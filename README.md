@@ -16,7 +16,7 @@
     * 20' containertip, 3550 kg, 28000 kg, grain/salt/sand/ore/coal, lid
     * 20' flex top, 3560 kg, 28000 kg, grain/salt/sand, retractable lid
     * 20' open top, 3130 kg, 28055 kg, ore/coal open top
-  * tank **capacity**
+  * tank **int capacity**
     * 20' T1, 3600 kg, 32400 kg, wine/juice, 25000L
     * 40' T1, 6200 kg, 43600 kg, wine/juice, 44500L
     * 20' T4, 11315 kg, 23685 kg, non-hazardous edible/non-edible oils, 20000L
@@ -24,13 +24,13 @@
     * 20' T14, 3500 kg, 30500 kg, hazardous chemicals/acids, 26000L
     * 20' T50, 4500 kg, 29500 kg, LPG, ammonia, 24500L
     * 20' T75, 11600 kg, 22400 kg, cryogenic liquids, 20000L
-  * dry bulk **string name** **int empty_weight** **int net_load** **string cargo**
-    * 20' standard, 2180 kg, 28300 kg, dry bulk
-    * 40' standard, 2630 kg, 28870 kg, dry bulk
-    * 40' high cube, 3810 kg, 28690 kg, dry bulk
-    * 45' high cube, 4850 kg, 27650 kg, dry bulk
-    * 20' open top, 2250 kg, 30480 kg, oversized cargo (tires, construction prefabricated elements)
-    * 40' open top, 3810 kg, 26670 kg, oversized cargo (tires, construction prefabricated elements)
-    * 40' open top high cube, 3940 kg, 32500 kg, oversized cargo
-    * 20' flatrack, 2500 kg, 21500 kg, large items, vehicles, tanks
-    * 40' flatrack, 4200 kg, 40800 kg, large items, vehicles, tanks
+  * dry bulk **string name** **int empty_weight** **int net_load** **string cargo type**
+    * 20' standard, 2180 kg, 28300 kg, coal/packaged goods/etc. dry bulk
+    * 40' standard, 2630 kg, 28870 kg, coal/packaged goods/etc. dry bulk
+    * 40' high cube, 3810 kg, 28690 kg, coal/packaged goods/etc. dry bulk
+    * 45' high cube, 4850 kg, 27650 kg, coal/packaged goods/etc.dry bulk
+    * 20' open top, 2250 kg, 30480 kg, tires, construction prefabricated elements, oversized cargo
+    * 40' open top, 3810 kg, 26670 kg, tires, construction prefabricated elements, oversized cargo
+    * 40' open top high cube, 3940 kg, 32500 kg, tires, construction prefabricated elements, oversized cargo
+    * 20' flatrack, 2500 kg, 21500 kg, vehicles, tanks, large items
+    * 40' flatrack, 4200 kg, 40800 kg, vehicles, tanks, large items
