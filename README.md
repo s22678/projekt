@@ -6,6 +6,7 @@
     * 40' high cube, 4620 kg, 29380 kg, packaged food, chemicals, medicine, [-35C, 30C]
     * 45' super freezer, 4850 kg, 27650 kg, food, chemicals, medicine, [-60C, 30C]
       * frozen tuna -60C
+      * vaccines -60C
     * CA (controlled atmosphere) **int[2] oxygen range** **int[2] co2 range**
       * 40' CA, 4330 kg, 29670 kg, fresh fruit, fresh vegetables, [-30C, 30C], [2%, 21%], [2%, 12%]
   * insulated for bananas or dry ice storage, special insulation from external conditions (salt, humidity etc) **float thermal conductivity**
