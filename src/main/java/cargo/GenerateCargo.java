@@ -1,10 +1,6 @@
 package main.java.cargo;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 import main.java.container.BulkLining;
-import main.java.container.Container;
 import main.java.container.ControlledAtmosphere;
 import main.java.container.DryBulk;
 import main.java.container.Insulated;
@@ -14,12 +10,6 @@ import main.java.container.Tank;
 public class GenerateCargo {
 
     final int numberOfContainers;
-    Reefer[] reefer;
-    ControlledAtmosphere[] ca;
-
-    String filePath = "C:\\Users\\10675543\\Documents\\workspace\\projekt\\myfile.txt";
-    FileWriter fWriter = null;
-    
 
     public GenerateCargo(int numberOfContainers) {
         this.numberOfContainers = numberOfContainers;
