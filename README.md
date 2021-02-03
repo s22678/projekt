@@ -9,6 +9,7 @@
       * vaccines -60C
     * CA (controlled atmosphere) **int[2] oxygen range** **int[2] co2 range**
       * 40' CA, 4330 kg, 29670 kg, fresh fruit, fresh vegetables, [-30C, 30C], [2%, 21%], [2%, 12%]
+      * 45' CA, 4700 kg, 27650 kg, fresh fruit, fresh vegetables, [-30C, 30C], [2%, 21%], [2%, 12%]
   * insulated for bananas or dry ice storage, special insulation from external conditions (salt, humidity etc) **float thermal conductivity**
     * 20' standard, 2200 kg, 27800 kg, fishing bait, furniture, paper goods, electronics, 0,035 W/(m*K)
     * 40' standard, 3801 kg, 26200 kg, fishing bait, furniture, paper goods, electronics, 0,035 W/(m*K)

@@ -2,6 +2,8 @@ package main.java;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
+
 import main.java.cargo.GenerateCargo;
 
 import main.java.container.BulkLining;
@@ -12,7 +14,7 @@ public class S22678 {
     public static void main(String [] args) throws Exception {
 
         String[] reeferContainers = {"20' standard", "40' standard", "40' high cube", "45' super freezer"};
-        String[] CAContainers = {"40' CA"};
+        String[] CAContainers = {"40' CA", "45' CA"};
         String[] insulatedContainers = {"20' standard", "40' standard", "40' high cube"};
         String[] bulkLiningContainers = {"20' containertip", "20' flex top", "20' open top"};
         String[] tankContainers = {"20' T1", "40' T1", "20' T4", "20' T11", "20' T14", "20' T50", "20' T75"};
@@ -27,11 +29,19 @@ public class S22678 {
             cargoTypeSize += cargoTypeNumber[i];
         }
         cargoTypeNumber[5] = 15000 - cargoTypeSize;
-        System.out.println("cargoTypeNumber[" + 5 + "] " +cargoTypeNumber[5]);
+        System.out.println("cargoTypeNumber[" + 5 + "] " + cargoTypeNumber[5]);
 
         GenerateCargo reefers = new GenerateCargo(cargoTypeNumber[0]);
-        reefers.createCargoValues(Reefer.nameAttributes, Reefer.cargoAttributes, Reefer.tareAttributes, Reefer.maxCargoWeightAttributes);
-
+        Reefer[] reefer = new Reefer[cargoTypeNumber[0]];
+        reefers.createCargo(Reefer.nameAttributes, Reefer.cargoAttributes, Reefer.tareAttributes, Reefer.maxCargoWeightAttributes, reefer);
+        
+        try {
+            for(int i = 0; i < reefer.length; i++) {
+                System.out.println("i: " + i + " Name: " + reefer[i].getName() + " Cargo: " + reefer[i].getCargo() + " Total Weight: " + reefer[i].getTotalWeight() + " Temperature: " + reefer[i].getTemperature());
+            }
+        } catch (ArrayIndexOutOfBoundsException e ) {
+            e.printStackTrace();
+        }
 
  
         String filePath = "C:\\Users\\10675543\\Documents\\workspace\\projekt\\myfile.txt";
@@ -58,17 +68,21 @@ public class S22678 {
         //    containers[i] = bulkLining;
         //}
 //
-        //try {
-        //    fWriter = new FileWriter(filePath);
-        //    for(int i = 0; i < containers.length; i++) {
-        //        fWriter.write(i + " " + containers[i].toString() + "\n");
-        //    }
-        //} catch (IOException e) {
-        //    e.printStackTrace();
-        //} finally {
-        //    if(fWriter != null) {
-        //        fWriter.close();
-        //    }
-        //}
+        try {
+            fWriter = new FileWriter(filePath);
+            for(int i = 0; i < 10; i++) {
+                fWriter.write(i + " " + Integer.toString(i) + "\n");
+                fWriter.flush();
+            }
+            for(int i = 10; i < 20; i++) {
+                fWriter.write(i + " " + Integer.toString(i) + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(fWriter != null) {
+                fWriter.close();
+            }
+        }
     }
 }
