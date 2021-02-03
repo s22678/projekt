@@ -8,6 +8,7 @@ import main.java.cargo.GenerateCargo;
 
 import main.java.container.BulkLining;
 import main.java.container.Container;
+import main.java.container.ControlledAtmosphere;
 import main.java.container.Reefer;
 
 public class S22678 {
@@ -25,23 +26,30 @@ public class S22678 {
 
         for(int i =0; i < 5; i++) {
             cargoTypeNumber[i] = ((int) ((Math.random() * (3000 - 2000)) + 2000));
-            System.out.println("cargoTypeNumber[" + i + "] " +cargoTypeNumber[i]);
+            System.out.println("cargoTypeNumber[" + i + "] " + cargoTypeNumber[i] + " cargoTypeSize " + cargoTypeSize);
             cargoTypeSize += cargoTypeNumber[i];
         }
         cargoTypeNumber[5] = 15000 - cargoTypeSize;
-        System.out.println("cargoTypeNumber[" + 5 + "] " + cargoTypeNumber[5]);
+        System.out.println("cargoTypeNumber[" + 5 + "] " + cargoTypeNumber[5] + " cargoTypeSize " + cargoTypeSize);
 
         GenerateCargo reefers = new GenerateCargo(cargoTypeNumber[0]);
         Reefer[] reefer = new Reefer[cargoTypeNumber[0]];
         reefers.createCargo(Reefer.nameAttributes, Reefer.cargoAttributes, Reefer.tareAttributes, Reefer.maxCargoWeightAttributes, reefer);
         
-        try {
-            for(int i = 0; i < reefer.length; i++) {
-                System.out.println("i: " + i + " Name: " + reefer[i].getName() + " Cargo: " + reefer[i].getCargo() + " Total Weight: " + reefer[i].getTotalWeight() + " Temperature: " + reefer[i].getTemperature());
-            }
-        } catch (ArrayIndexOutOfBoundsException e ) {
-            e.printStackTrace();
-        }
+        GenerateCargo cas = new GenerateCargo(cargoTypeNumber[1]);
+        ControlledAtmosphere[] ca = new ControlledAtmosphere[cargoTypeNumber[1]];
+        cas.createCargo(ControlledAtmosphere.nameAttributes, ControlledAtmosphere.cargoAttributes, ControlledAtmosphere.tareAttributes, ControlledAtmosphere.maxCargoWeightAttributes, ControlledAtmosphere.oxygenAttributes, ControlledAtmosphere.carbonDioxideAttributes, ControlledAtmosphere.temperatureAttributes, ca);
+        
+        // try {
+            // for(int i = 0; i < reefer.length; i++) {
+                // System.out.println("i: " + i + " Name: " + reefer[i].getName() + " Cargo: " + reefer[i].getCargo() + " Total Weight: " + reefer[i].getTotalWeight() + " Temperature: " + reefer[i].getTemperature());
+            // }
+            // for(int i = 0; i < ca.length; i++) {
+                // System.out.println("i: " + i + " Name: " + ca[i].getName() + " Cargo: " + ca[i].getCargo() + " Total Weight: " + ca[i].getTotalWeight() + " Temperature: " + ca[i].getTemperature());
+            // }
+        // } catch (ArrayIndexOutOfBoundsException e ) {
+            // e.printStackTrace();
+        // }
 
  
         String filePath = "C:\\Users\\10675543\\Documents\\workspace\\projekt\\myfile.txt";
@@ -70,12 +78,14 @@ public class S22678 {
 //
         try {
             fWriter = new FileWriter(filePath);
-            for(int i = 0; i < 10; i++) {
-                fWriter.write(i + " " + Integer.toString(i) + "\n");
+            for(int i = 0; i < cargoTypeNumber[0]; i++) {
+                fWriter.write("i: " + (i+1) + " Name: " + reefer[i].getName() + " Cargo: " + reefer[i].getCargo() + " Total Weight: " + reefer[i].getTotalWeight() + " Temperature: " + reefer[i].getTemperature() + "\n");
                 fWriter.flush();
             }
-            for(int i = 10; i < 20; i++) {
-                fWriter.write(i + " " + Integer.toString(i) + "\n");
+            
+            for(int i = 0; i < cargoTypeNumber[1]; i++) {
+                fWriter.write("i: " + (i+cargoTypeNumber[0]+1) + " Name: " + ca[i].getName() + " Cargo: " + ca[i].getCargo() + " Total Weight: " + ca[i].getTotalWeight() + " Temperature: " + ca[i].getTemperature() + "\n");
+                fWriter.flush();
             }
         } catch (IOException e) {
             e.printStackTrace();
