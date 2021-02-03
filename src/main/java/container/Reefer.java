@@ -52,4 +52,9 @@ public class Reefer extends Container {
     public int getTotalWeight() {
         return tareWeight + maxNetLoad;
     }
+
+    @Override
+    public String toString() {
+        return " Name " + this.getName() + " cargo " + this.getCargo() + " tare weight " + this.getTareWeight() + " maximum net load " + this.getMaxNetLoad() + " temperature " + getTemperature() + " total weight " + getTotalWeight();
+    }
 }

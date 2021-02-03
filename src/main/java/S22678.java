@@ -2,97 +2,81 @@ package main.java;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 
 import main.java.cargo.GenerateCargo;
-
 import main.java.container.BulkLining;
-import main.java.container.Container;
 import main.java.container.ControlledAtmosphere;
+import main.java.container.DryBulk;
 import main.java.container.Reefer;
+import main.java.container.Insulated;
+import main.java.container.Tank;
+import main.java.container.Container;
 
 public class S22678 {
     public static void main(String [] args) throws Exception {
 
-        String[] reeferContainers = {"20' standard", "40' standard", "40' high cube", "45' super freezer"};
-        String[] CAContainers = {"40' CA", "45' CA"};
-        String[] insulatedContainers = {"20' standard", "40' standard", "40' high cube"};
-        String[] bulkLiningContainers = {"20' containertip", "20' flex top", "20' open top"};
-        String[] tankContainers = {"20' T1", "40' T1", "20' T4", "20' T11", "20' T14", "20' T50", "20' T75"};
-        String[] dryBulkContainers = {"20' standard", "40' standard", "40' high cube", "45' high cube", "20' open top", "40' open top", "40' open top", "20' flatrack", "40' flatrack"};
+        final int REEFER_NUMBER = 0;
+        final int CA_NUMBER = 1;
+        final int INSULATED_NUMBER = 2;
+        final int BULK_LINING_NUMBER = 3;
+        final int TANKER_NUMBER = 4;
+        final int DRY_BULK_NUMBER = 5;
 
         int[] cargoTypeNumber = new int[6];
         int cargoTypeSize = 0;
 
         for(int i =0; i < 5; i++) {
             cargoTypeNumber[i] = ((int) ((Math.random() * (3000 - 2000)) + 2000));
-            System.out.println("cargoTypeNumber[" + i + "] " + cargoTypeNumber[i] + " cargoTypeSize " + cargoTypeSize);
             cargoTypeSize += cargoTypeNumber[i];
+            System.out.println("cargoTypeNumber[" + i + "] " + cargoTypeNumber[i] + " cargoTypeSize " + cargoTypeSize);
         }
         cargoTypeNumber[5] = 15000 - cargoTypeSize;
+        cargoTypeSize += cargoTypeNumber[5];
         System.out.println("cargoTypeNumber[" + 5 + "] " + cargoTypeNumber[5] + " cargoTypeSize " + cargoTypeSize);
 
-        GenerateCargo reefers = new GenerateCargo(cargoTypeNumber[0]);
-        Reefer[] reefer = new Reefer[cargoTypeNumber[0]];
+        GenerateCargo reefers = new GenerateCargo(cargoTypeNumber[REEFER_NUMBER]);
+        Reefer[] reefer = new Reefer[cargoTypeNumber[REEFER_NUMBER]];
         reefers.createCargo(Reefer.nameAttributes, Reefer.cargoAttributes, Reefer.tareAttributes, Reefer.maxCargoWeightAttributes, reefer);
-        
-        GenerateCargo cas = new GenerateCargo(cargoTypeNumber[1]);
-        ControlledAtmosphere[] ca = new ControlledAtmosphere[cargoTypeNumber[1]];
-        cas.createCargo(ControlledAtmosphere.nameAttributes, ControlledAtmosphere.cargoAttributes, ControlledAtmosphere.tareAttributes, ControlledAtmosphere.maxCargoWeightAttributes, ControlledAtmosphere.oxygenAttributes, ControlledAtmosphere.carbonDioxideAttributes, ControlledAtmosphere.temperatureAttributes, ca);
-        
-        // try {
-            // for(int i = 0; i < reefer.length; i++) {
-                // System.out.println("i: " + i + " Name: " + reefer[i].getName() + " Cargo: " + reefer[i].getCargo() + " Total Weight: " + reefer[i].getTotalWeight() + " Temperature: " + reefer[i].getTemperature());
-            // }
-            // for(int i = 0; i < ca.length; i++) {
-                // System.out.println("i: " + i + " Name: " + ca[i].getName() + " Cargo: " + ca[i].getCargo() + " Total Weight: " + ca[i].getTotalWeight() + " Temperature: " + ca[i].getTemperature());
-            // }
-        // } catch (ArrayIndexOutOfBoundsException e ) {
-            // e.printStackTrace();
-        // }
 
- 
+        GenerateCargo cas = new GenerateCargo(cargoTypeNumber[CA_NUMBER]);
+        ControlledAtmosphere[] ca = new ControlledAtmosphere[cargoTypeNumber[CA_NUMBER]];
+        cas.createCargo(ControlledAtmosphere.nameAttributes, ControlledAtmosphere.cargoAttributes, ControlledAtmosphere.tareAttributes, ControlledAtmosphere.maxCargoWeightAttributes, ControlledAtmosphere.oxygenAttributes, ControlledAtmosphere.carbonDioxideAttributes, ControlledAtmosphere.temperatureAttributes, ca);
+
+        GenerateCargo insulatedContainers = new GenerateCargo(cargoTypeNumber[INSULATED_NUMBER]);
+        Insulated[] insulated = new Insulated[cargoTypeNumber[INSULATED_NUMBER]];
+        insulatedContainers.createCargo(Insulated.nameAttributes, Insulated.cargoAttributes, Insulated.tareWeightAttributes, Insulated.maxNetLoadAttributes, Insulated.thermalConductivityAttributes, insulated);
+
+        GenerateCargo bulkLiningContainers = new GenerateCargo(cargoTypeNumber[BULK_LINING_NUMBER]);
+        BulkLining[] bulk = new BulkLining[cargoTypeNumber[BULK_LINING_NUMBER]];
+        bulkLiningContainers.createCargo(BulkLining.nameAttributes, BulkLining.cargoAttributes, BulkLining.tareWeightAttributes, BulkLining.maxNetLoadAttributes, BulkLining.loadingSolutionAttributes, bulk);
+
+        GenerateCargo tankers = new GenerateCargo(cargoTypeNumber[TANKER_NUMBER]);
+        Tank[] tank = new Tank[cargoTypeNumber[TANKER_NUMBER]];
+        tankers.createCargo(Tank.nameAttributes, Tank.cargoAttributes, Tank.tareWeightAttributes, Tank.maxNetLoadAttributes, tank);
+
+        GenerateCargo dryBulkContainers = new GenerateCargo(cargoTypeNumber[DRY_BULK_NUMBER]);
+        DryBulk[] dryBulk = new DryBulk[cargoTypeNumber[DRY_BULK_NUMBER]];
+        dryBulkContainers.createCargo(DryBulk.nameAttributes, DryBulk.cargoTypeAttributes, DryBulk.tareWeightAttributes, DryBulk.maxNetLoadAttributes, DryBulk.cargoAttributes, dryBulk);
+
+        Container[][] ssds = {reefer, ca, insulated, bulk, tank, dryBulk};
+        
+        for(int i = 0; i < ssds.length; i++) {
+            S22678.writeToFile(ssds[i], true);   
+        }
+    }
+
+    public static void writeToFile(Container[] arr, boolean append) throws IOException {
         String filePath = "C:\\Users\\10675543\\Documents\\workspace\\projekt\\myfile.txt";
         FileWriter fWriter = null;
+        
+        fWriter = new FileWriter(filePath, append);
+        for(int i = 0; i < arr.length; i++) {
+            fWriter.write(arr[i].toString() + "\n");
+            fWriter.flush();
+        }
 
-        // GenerateCargo cargo = new GenerateCargo();
-        // cargo.printCargo();
-        // cargo.generateRandomCargo(cargo.createReefers());
-
-        //generate number of each container
-        //for(int i =0; i < 5; i++) {
-        //    cargoTypeNumber[i] = ((int) ((Math.random() * (3000 - 2000)) + 2000));
-        //    System.out.println("cargoTypeNumber[" + i + "] " +cargoTypeNumber[i]);
-        //    cargoValue += cargoTypeNumber[i];
-        //}
-        //cargoTypeNumber[5] = 15000 - cargoValue;
-        //System.out.println("cargoTypeNumber[" + 5 + "] " +cargoTypeNumber[5]);
-        //System.out.println("cargoValue: " + cargoValue);
-        //System.out.println("final value: " + (cargoValue+cargoTypeNumber[5]));
-
-        //Container[] containers = new Container[15000];
-        //for(int i = 0; i < containers.length; i++) {
-        //    BulkLining bulkLining = new BulkLining("20' containertip", 3550, 28000, "grain", "lid");
-        //    containers[i] = bulkLining;
-        //}
-//
-        try {
-            fWriter = new FileWriter(filePath);
-            for(int i = 0; i < cargoTypeNumber[0]; i++) {
-                fWriter.write("i: " + (i+1) + " Name: " + reefer[i].getName() + " Cargo: " + reefer[i].getCargo() + " Total Weight: " + reefer[i].getTotalWeight() + " Temperature: " + reefer[i].getTemperature() + "\n");
-                fWriter.flush();
-            }
-            
-            for(int i = 0; i < cargoTypeNumber[1]; i++) {
-                fWriter.write("i: " + (i+cargoTypeNumber[0]+1) + " Name: " + ca[i].getName() + " Cargo: " + ca[i].getCargo() + " Total Weight: " + ca[i].getTotalWeight() + " Temperature: " + ca[i].getTemperature() + "\n");
-                fWriter.flush();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if(fWriter != null) {
-                fWriter.close();
-            }
+        if(fWriter != null) {
+            fWriter.close();
         }
     }
 }

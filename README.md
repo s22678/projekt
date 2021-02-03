@@ -30,7 +30,7 @@
     * 20' standard, 2180 kg, 28300 kg, coal/packaged goods/etc. dry bulk
     * 40' standard, 2630 kg, 28870 kg, coal/packaged goods/etc. dry bulk
     * 40' high cube, 3810 kg, 28690 kg, coal/packaged goods/etc. dry bulk
-    * 45' high cube, 4850 kg, 27650 kg, coal/packaged goods/etc.dry bulk
+    * 45' high cube, 4850 kg, 27650 kg, coal/packaged goods/etc. dry bulk
     * 20' open top, 2250 kg, 30480 kg, tires, construction prefabricated elements, oversized cargo
     * 40' open top, 3810 kg, 26670 kg, tires, construction prefabricated elements, oversized cargo
     * 40' open top high cube, 3940 kg, 32500 kg, tires, construction prefabricated elements, oversized cargo
