@@ -65,6 +65,6 @@ public class ControlledAtmosphere extends Reefer {
 
     @Override
     public String toString() {
-        return " Name " + this.getName() + " cargo " + this.getCargo() + " tare weight " + this.getTareWeight() + " maximum net load " + this.getMaxNetLoad() + " oxygen levels " + getOxygenPercentage() + " carbon dioxide levels" + getCarbonDioxidePercentage() + " nitrogen levels " + getNitrogenPercentage() + " temperature " + getTemperature() + " total weight " + getTotalWeight();
+        return "Name " + this.getName() + ", cargo " + this.getCargo() + ", tare weight " + this.getTareWeight() + ", maximum net load " + this.getMaxNetLoad() + ", oxygen levels " + getOxygenPercentage() + ", carbon dioxide levels" + getCarbonDioxidePercentage() + ", nitrogen levels " + getNitrogenPercentage() + ", temperature " + getTemperature() + ", total weight: " + getTotalWeight();
     }
 }

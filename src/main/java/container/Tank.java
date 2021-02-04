@@ -63,6 +63,6 @@ public class Tank extends Container {
 
     @Override
     public String toString() {
-        return " Name " + this.getName() + " cargo " + this.getCargo() + " tare weight " + this.getTareWeight() + " maximum net load " + this.getMaxNetLoad() + " capacity " + getCapacity() + " total weight " + getTotalWeight();
+        return "Name " + this.getName() + ", cargo " + this.getCargo() + ", tare weight " + this.getTareWeight() + ", maximum net load " + this.getMaxNetLoad() + ", capacity " + getCapacity() + ", total weight: " + getTotalWeight();
     }
 }

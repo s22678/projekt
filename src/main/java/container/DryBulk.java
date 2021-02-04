@@ -43,6 +43,6 @@ public class DryBulk extends Container{
 
     @Override
     public String toString() {
-        return " Name " + this.getName() + " cargo " + this.getCargo() + " tare weight " + this.getTareWeight() + " maximum net load " + this.getMaxNetLoad() + " cargo type" + getCargoType() + " total weight " + getTotalWeight();
+        return "Name " + this.getName() + ", cargo " + this.getCargo() + ", tare weight " + this.getTareWeight() + ", maximum net load " + this.getMaxNetLoad() + ", cargo type" + getCargoType() + ", total weight: " + getTotalWeight();
     }
 }

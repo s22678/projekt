@@ -1,7 +1,10 @@
 package main.java;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
 
 import main.java.cargo.GenerateCargo;
 import main.java.container.BulkLining;
@@ -10,9 +13,13 @@ import main.java.container.DryBulk;
 import main.java.container.Reefer;
 import main.java.container.Insulated;
 import main.java.container.Tank;
+import main.java.ship.ContainerBlock;
+import main.java.ship.ContainerShip;
 import main.java.container.Container;
 
 public class S22678 {
+
+    static String[] cargoData;
     public static void main(String [] args) throws Exception {
 
         final int REEFER_NUMBER = 0;
@@ -58,17 +65,49 @@ public class S22678 {
         DryBulk[] dryBulk = new DryBulk[cargoTypeNumber[DRY_BULK_NUMBER]];
         dryBulkContainers.createCargo(DryBulk.nameAttributes, DryBulk.cargoTypeAttributes, DryBulk.tareWeightAttributes, DryBulk.maxNetLoadAttributes, DryBulk.cargoAttributes, dryBulk);
 
-        Container[][] ssds = {reefer, ca, insulated, bulk, tank, dryBulk};
+        Container[][] allContainers = {reefer, ca, insulated, bulk, tank, dryBulk};
         
-        for(int i = 0; i < ssds.length; i++) {
-            S22678.writeToFile(ssds[i], true);   
+        for(int i = 0; i < allContainers.length; i++) {
+            S22678.writeToFile(allContainers[i], true);   
+        }
+
+        cargoData = S22678.readFromFile();
+        Container[] containers = new Container[cargoData.length];
+        ContainerShip containerShip = new ContainerShip("Maersk");
+        
+        for(int i = 0; i < cargoData.length; i++) {
+            containers[i] = new Container(cargoData[i].split(",")[0],  cargoData[i].split(",")[1].split(" ")[2], cargoData[i].split(": ")[1]);
+            containerShip.loadBay(containers[i], i);
+            //System.out.println(cargoData[i].split(": ")[1]);
+            // System.out.print("Container number: " + (i+1) + " Name: " + cargoData[i].split(",")[0] + ", cargo: " + cargoData[i].split(",")[1].split(" ")[2] + ", total weight " + cargoData[i].split(": ")[1]);
+            // System.out.println();
         }
     }
 
-    public static void writeToFile(Container[] arr, boolean append) throws IOException {
-        String filePath = "C:\\Users\\10675543\\Documents\\workspace\\projekt\\myfile.txt";
-        FileWriter fWriter = null;
+    public static String[] readFromFile() {
         
+        String[] cargoData = new String[15000];
+        BufferedReader reader;
+        int i = 0;
+        try {
+            reader = new BufferedReader(new FileReader("C:\\myfile.txt"));
+            String line = reader.readLine();
+            while(line != null) {
+                cargoData[i] = line;
+                i++;
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return cargoData;
+    }
+
+    public static void writeToFile(Container[] arr, boolean append) throws IOException {
+        String filePath = "C:\\myfile.txt";
+        FileWriter fWriter = null;
+
         fWriter = new FileWriter(filePath, append);
         for(int i = 0; i < arr.length; i++) {
             fWriter.write(arr[i].toString() + "\n");

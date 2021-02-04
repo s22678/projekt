@@ -41,6 +41,6 @@ public class BulkLining extends Container {
 
     @Override
     public String toString() {
-        return " Name " + this.getName() + " cargo " + this.getCargo() + " tare weight " + this.getTareWeight() + " maximum net load " + this.getMaxNetLoad() + " loading solution " + getLoadingSolution() + " total weight " + getTotalWeight();
+        return "Name " + this.getName() + ", cargo " + this.getCargo() + ", tare weight " + this.getTareWeight() + ", maximum net load " + this.getMaxNetLoad() + ", loading solution " + getLoadingSolution() + ", total weight: " + getTotalWeight();
     }
 }
